@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+<script type="text/javascript">
+  var img_url = '{{data.img_url}}'
+</script>
+
+{% block content %}
+
+<div class="row">
+ 
+
+  <form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input id="upload" type=submit value=Upload>
+
+  </form>
+
+
+
+  <div class="col-md-3 ">
+    <h2>Results</h2>
+    <br>
+    <p id="searching">Searching...</p>
+    <p id="error">Oh no! No results! Check your internet connection.</p>
+    <table class="table" id="results-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Distance</th>
+        </tr>
+      </thead>
+      <tbody id="results">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-5 col-md-offset-1" >
+    <h2>Selectionner image</h2>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        {% for file in files %}
+      <img src="{{ url_for('upload', filename=file) }}" style="height: 250px;"  class="img">
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-3 ">
+
+    <img src="{{ url_for('static', filename='isi.png') }}" style="height: 125px; width: 250;">
+ </div>
+</div>
+
+
+ 
+<br>
+ 
+{% endblock %}
